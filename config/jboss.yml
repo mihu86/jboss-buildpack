@@ -1,5 +1,6 @@
 ---
 #version: 7.1.+
 #repository_root: ! '{default.repository.root}/jboss-as'
-version: 9.0.2_Final
+#version: 9.0.2_Final
+version: 8.2.1.Final
 repository_root: https://bintray.com/artifact/download/matf/jboss-wildfly
