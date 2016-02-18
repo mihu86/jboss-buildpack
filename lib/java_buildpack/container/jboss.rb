@@ -65,7 +65,8 @@ module JavaBuildpack
 
       def create_dodeploy
         #FileUtils.touch(webapps + 'ROOT.war.dodeploy')
-        root.children.each { |child| FileUtils.touch(File.basename(child) + '.dodeploy')  }
+        #root.children.each { |child| FileUtils.touch(File.basename(child) + '.dodeploy')  }
+        root.children.each { |child| FileUtils.touch(File.path(child) + '.dodeploy')  }
       end
 
       def root
