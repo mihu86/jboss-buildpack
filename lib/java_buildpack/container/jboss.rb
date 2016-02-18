@@ -52,7 +52,8 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
-        web_inf? && !JavaBuildpack::Util::JavaMainUtils.main_class(@application)
+        #web_inf? && !JavaBuildpack::Util::JavaMainUtils.main_class(@application)
+        true
       end
 
       private
@@ -63,11 +64,13 @@ module JavaBuildpack
       end
 
       def create_dodeploy
-        FileUtils.touch(webapps + 'ROOT.war.dodeploy')
+        #FileUtils.touch(webapps + 'ROOT.war.dodeploy')
+        root.children.each { |child| FileUtils.touch(File.basename(child) + '.dodeploy')  }
       end
 
       def root
-        webapps + 'ROOT.war'
+        #webapps + 'ROOT.war'
+        webapps
       end
 
       def update_configuration
