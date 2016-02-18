@@ -36,7 +36,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        @droplet.java_opts.add_system_property 'http.port', '$PORT'
+        @droplet.java_opts.add_system_property 'jboss.http.port', '$PORT'
 
         [
           @droplet.java_home.as_env_var,
@@ -80,8 +80,8 @@ module JavaBuildpack
         modified = standalone_config.read
                      .gsub(/<virtual-server name="default-host" enable-welcome-root="true">/,
                            '<virtual-server name="default-host" enable-welcome-root="false">')
-                     .gsub(%r{<socket-binding name="http" port="8080"/>},
-                           '<socket-binding name="http" port="${http.port}"/>')
+#                     .gsub(%r{<socket-binding name="http" port="8080"/>},
+#                           '<socket-binding name="http" port="${http.port}"/>')
 
         standalone_config.open('w') { |f| f.write modified }
       end
